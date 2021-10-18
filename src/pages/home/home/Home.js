@@ -1,9 +1,14 @@
 import React from 'react';
+import useFirebase from '../../../hooks/useFirebase';
+import Login from '../../login/login/Login';
 
 const Home = () => {
+    const { user } = useFirebase();
+    console.log(user);
     return (
         <div>
-            <h1>from home</h1>
+            <h2>{user.email}</h2>
+            <Login></Login>
         </div>
     );
 };
