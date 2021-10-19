@@ -38,24 +38,31 @@ const Header = () => {
                     <MDBCollapse navbar show={showNavText} className='collapse'>
                         <MDBNavbarNav className='ml-auto w-100 justify-content-end gap-2'>
                             <MDBNavbarItem>
-                                <MDBBtn color='link'>
-                                    Services
-                                </MDBBtn>
-                                <MDBBtn color='link'>
-                                    Health Tips
-                                </MDBBtn>
+                                <Link to='/health-tips'>
+                                    <MDBBtn color='link'>
+                                        Health Tips
+                                    </MDBBtn>
+                                </Link>
+                                <Link to='/consulting'>
+                                    <MDBBtn color='link'>
+                                        Consulting
+                                    </MDBBtn>
+                                </Link>
                             </MDBNavbarItem>
                             {
                                 user.email
                                     ? (
-                                        <MDBBtn
-                                            onClick={userSignOut}
-                                            rounded
-                                            className='text-dark'
-                                            color='light'
-                                        >
-                                            Sign Out
-                                        </MDBBtn>
+                                        <div className='d-flex gap-3 align-items-center justify-content-center'>
+                                            <p>{user.displayName}</p>
+                                            <MDBBtn
+                                                onClick={userSignOut}
+                                                rounded
+                                                className='text-dark'
+                                                color='light'
+                                            >
+                                                Sign Out
+                                            </MDBBtn>
+                                        </div>
                                     )
                                     : (
                                         <MDBNavbarItem>

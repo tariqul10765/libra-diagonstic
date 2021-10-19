@@ -3,6 +3,7 @@ import useFirebase from '../../../hooks/useFirebase';
 import HealthTips from '../../health-tips/HealthTips';
 import ServiceDetails from '../../service-details/ServiceDetails';
 import Carousel from '../carousel/Carousel';
+import KnowHealth from '../know-health/KnowHealth';
 import LatestTecnology from '../latest-tecnology/LatestTecnology';
 import Services from '../services/Services';
 
@@ -11,11 +12,12 @@ const Home = () => {
     console.log(user);
     return (
         <div>
-            <HealthTips></HealthTips>
-            {/* <Carousel></Carousel>
-            <Services></Services> */}
+            {/* <HealthTips></HealthTips> */}
+            <Carousel></Carousel>
+            <Services></Services>
+            <KnowHealth></KnowHealth>
             {/* <ServiceDetails></ServiceDetails> */}
-            {/* <LatestTecnology></LatestTecnology> */}
+            <LatestTecnology></LatestTecnology>
         </div>
     );
 };

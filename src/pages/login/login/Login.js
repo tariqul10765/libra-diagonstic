@@ -10,7 +10,7 @@ const Login = () => {
     const history = useHistory();
 
     const { control, handleSubmit } = useForm();
-    const { googleSignIn, emailPasswordSignIn } = useFirebase();
+    const { googleSignIn, emailPasswordSignIn, error } = useFirebase();
 
     const redirect_url = location.state?.from || '/';
 
@@ -57,9 +57,12 @@ const Login = () => {
                             />
                         }
                     />
-
+                    <p className='text-danger text-start'>{error}</p>
                     <p className='text-start'>New User? <Link to='/register'>Sign Up</Link></p>
-                    <MDBBtn className='w-100' color='secondary' type='submit'>
+                    <MDBBtn
+                        className='w-100'
+                        color='secondary'
+                        type='submit'>
                         Sign In
                     </MDBBtn>
                 </form>
