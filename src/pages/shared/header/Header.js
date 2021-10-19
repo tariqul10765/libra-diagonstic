@@ -41,6 +41,9 @@ const Header = () => {
                                 <MDBBtn color='link'>
                                     Services
                                 </MDBBtn>
+                                <MDBBtn color='link'>
+                                    Health Tips
+                                </MDBBtn>
                             </MDBNavbarItem>
                             {
                                 user.email
