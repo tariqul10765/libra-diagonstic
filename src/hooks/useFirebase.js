@@ -20,13 +20,8 @@ const useFirebase = () => {
     const googleProvider = new GoogleAuthProvider();
 
     const googleSignIn = () => {
-        signInWithPopup(auth, googleProvider)
-            .then(result => {
+        return signInWithPopup(auth, googleProvider)
 
-            })
-            .catch(error => {
-                setError(error.message);
-            })
     }
     const emailPasswordSignUp = (email, password) => {
         createUserWithEmailAndPassword(auth, email, password)
@@ -60,7 +55,8 @@ const useFirebase = () => {
     const userSignOut = () => {
         signOut(auth)
             .then(() => {
-                // Sign-out successful.
+                console.log('Sign-out successful.');
+                setUser({});
             }).catch((error) => {
                 setError(error);
             });

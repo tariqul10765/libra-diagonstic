@@ -1,6 +1,6 @@
 import React from 'react';
 import useFirebase from '../../../hooks/useFirebase';
-import Login from '../../login/login/Login';
+import ServiceDetails from '../../service-details/ServiceDetails';
 import Carousel from '../carousel/Carousel';
 import LatestTecnology from '../latest-tecnology/LatestTecnology';
 import Services from '../services/Services';
@@ -12,7 +12,8 @@ const Home = () => {
         <div>
             <Carousel></Carousel>
             <Services></Services>
-            <LatestTecnology></LatestTecnology>
+            {/* <ServiceDetails></ServiceDetails> */}
+            {/* <LatestTecnology></LatestTecnology> */}
         </div>
     );
 };

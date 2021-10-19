@@ -12,15 +12,19 @@ import {
 import React, { useState } from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
 
 const Header = () => {
     const [showNavText, setShowNavText] = useState(false);
+    const { user, userSignOut } = useAuth();
 
     return (
         <div>
             <MDBNavbar expand='lg' light bgColor='light'>
                 <MDBContainer fluid>
-                    <MDBNavbarBrand href='#'>LIBRA DIAGONSTIC</MDBNavbarBrand>
+                    <Link to='/'>
+                        <MDBNavbarBrand href='#'>LIBRA DIAGONSTIC</MDBNavbarBrand>
+                    </Link>
                     <MDBNavbarToggler
                         type='button'
                         data-target='#navbarText'
@@ -38,20 +42,36 @@ const Header = () => {
                                     Services
                                 </MDBBtn>
                             </MDBNavbarItem>
-                            <MDBNavbarItem>
-                                <Link to='/login'>
-                                    <MDBBtn rounded color='danger'>
-                                        SIGN IN
-                                    </MDBBtn>
-                                </Link>
-                            </MDBNavbarItem>
-                            <MDBNavbarItem>
-                                <Link to='/register'>
-                                    <MDBBtn rounded color='warning'>
-                                        SIGN UP
-                                    </MDBBtn>
-                                </Link>
-                            </MDBNavbarItem>
+                            {
+                                user.email
+                                    ? (
+                                        <MDBBtn
+                                            onClick={userSignOut}
+                                            rounded
+                                            className='text-dark'
+                                            color='light'
+                                        >
+                                            Sign Out
+                                        </MDBBtn>
+                                    )
+                                    : (
+                                        <MDBNavbarItem>
+                                            <Link to='/login'>
+                                                <MDBBtn rounded color='danger'>
+                                                    SIGN IN
+                                                </MDBBtn>
+                                            </Link>
+
+                                            <Link to='/register'>
+                                                <MDBBtn rounded color='warning'>
+                                                    SIGN UP
+                                                </MDBBtn>
+                                            </Link>
+                                        </MDBNavbarItem>
+
+
+                                    )
+                            }
                         </MDBNavbarNav>
                     </MDBCollapse>
                 </MDBContainer>

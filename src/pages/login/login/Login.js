@@ -1,11 +1,25 @@
 import { MDBBtn, MDBContainer, MDBInput } from 'mdb-react-ui-kit';
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useHistory, useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 import useFirebase from '../../../hooks/useFirebase';
 
 const Login = () => {
+    let location = useLocation();
+    const history = useHistory();
+
     const { control, handleSubmit } = useForm();
     const { googleSignIn, emailPasswordSignIn } = useFirebase();
+
+    const redirect_url = location.state?.from || '/';
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                history.push(redirect_url);
+            })
+    }
     const onSubmit = data => {
         const { email, password } = data;
         emailPasswordSignIn(email, password);
@@ -44,6 +58,7 @@ const Login = () => {
                         }
                     />
 
+                    <p className='text-start'>New User? <Link to='/register'>Sign Up</Link></p>
                     <MDBBtn className='w-100' color='secondary' type='submit'>
                         Sign In
                     </MDBBtn>
@@ -55,7 +70,7 @@ const Login = () => {
                     className='w-100'
                     color='warning'
                     type='submit'
-                    onClick={googleSignIn}
+                    onClick={handleGoogleSignIn}
                 >
                     Sign In With Google
                 </MDBBtn>

@@ -1,6 +1,7 @@
 import { MDBBtn, MDBContainer, MDBInput } from 'mdb-react-ui-kit';
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import useFirebase from '../../../hooks/useFirebase';
 import './SignUp.css';
 
@@ -49,7 +50,7 @@ const SignUp = () => {
                             />
                         }
                     />
-                    <p className='text-start'>Already have an account? login</p>
+                    <p className='text-start'>Already have an account? <Link to='/login'>login</Link></p>
                     <MDBBtn className='w-100' color='secondary' type='submit'>
                         Sign Up
                     </MDBBtn>

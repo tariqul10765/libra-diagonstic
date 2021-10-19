@@ -1,8 +1,10 @@
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardText, MDBCardTitle, MDBRipple } from 'mdb-react-ui-kit';
 import React from 'react';
+import { Link } from 'react-router-dom';
+import './Service.css';
 
 const Service = ({ service }) => {
-    const { title, description, imgUrl } = service;
+    const { id, title, description, imgUrl } = service;
     return (
         <div>
             <MDBCard style={{ maxWidth: '22rem' }}>
@@ -11,11 +13,13 @@ const Service = ({ service }) => {
                     <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
                 </MDBRipple>
                 <MDBCardBody>
-                    <MDBCardTitle>Card title</MDBCardTitle>
-                    <MDBCardText>
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                    <MDBCardTitle>{title}</MDBCardTitle>
+                    <MDBCardText className='card__description'>
+                        {description.slice(0, 100)}
                     </MDBCardText>
-                    <MDBBtn href='#'>Button</MDBBtn>
+                    <Link to={`/service-details/${id}`}>
+                        <MDBBtn color='link'>View Details</MDBBtn>
+                    </Link>
                 </MDBCardBody>
             </MDBCard>
         </div>
