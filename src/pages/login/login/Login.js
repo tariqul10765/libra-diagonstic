@@ -9,29 +9,41 @@ const Login = () => {
     let location = useLocation();
     const history = useHistory();
 
-    const { control, handleSubmit } = useForm();
-    const { googleSignIn, emailPasswordSignIn, error } = useFirebase();
+    const { control, handleSubmit, formState: { errors } } = useForm();
+    const { googleSignIn, emailPasswordSignIn, error, setError } = useFirebase();
 
     const redirect_url = location.state?.from || '/';
 
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then(result => {
+                console.log(result.user);
                 history.push(redirect_url);
             })
     }
     const onSubmit = data => {
         const { email, password } = data;
-        emailPasswordSignIn(email, password);
+        emailPasswordSignIn(email, password)
+            .then((result) => {
+                // Signed in 
+                // const user = result.user;
+                history.push(redirect_url);
+            })
+            .catch(error => {
+                console.log(error);
+                setError(error.code);
+            })
+
     }
     return (
-        <div>
-            <h1>PLEASE SIGN IN</h1>
+        <div className='my-5'>
+            <h1 className='text-success'>PLEASE SIGN IN</h1>
             <MDBContainer className='my-3' id='form-container'>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <Controller
                         name="email"
                         control={control}
+                        rules={{ required: true }}
                         defaultValue=""
                         render={
                             ({ field }) => <MDBInput
@@ -42,10 +54,13 @@ const Login = () => {
                             />
                         }
                     />
+                    <p className='text-danger text-start'>{errors.email?.type === 'required' && "Email is required"}</p>
+
 
                     <Controller
                         name="password"
                         control={control}
+                        rules={{ required: true }}
                         defaultValue=""
                         render={
                             ({ field }) => <MDBInput
@@ -57,6 +72,7 @@ const Login = () => {
                             />
                         }
                     />
+                    <p className='text-danger text-start'>{errors.password?.type === 'required' && "Password is required"}</p>
                     <p className='text-danger text-start'>{error}</p>
                     <p className='text-start'>New User? <Link to='/register'>Sign Up</Link></p>
                     <MDBBtn

@@ -81,7 +81,7 @@ export default function Carousel() {
                     data-mdb-target="#carouselBasicExample"
                     data-mdb-slide="prev"
                 >
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span className="carousel-control-prev-icon text-dark" aria-hidden="true"></span>
                     <span className="visually-hidden">Previous</span>
                 </button>
                 <button

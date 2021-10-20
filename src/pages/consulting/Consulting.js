@@ -1,4 +1,4 @@
-import { MDBBtn, MDBCard, MDBCardBody, MDBCol, MDBContainer, MDBPopover, MDBPopoverBody, MDBPopoverHeader, MDBRow } from 'mdb-react-ui-kit';
+import { MDBCol, MDBContainer, MDBPopover, MDBPopoverBody, MDBPopoverHeader, MDBRow } from 'mdb-react-ui-kit';
 import React from 'react';
 import './Consulting.css';
 const consultants = [

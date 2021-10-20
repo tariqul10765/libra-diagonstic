@@ -6,7 +6,8 @@ import {
     signOut,
     onAuthStateChanged,
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    updateProfile
 } from "firebase/auth";
 import initializeFirebaseApp from "../firebase/firebase.init";
 
@@ -25,34 +26,27 @@ const useFirebase = () => {
         return signInWithPopup(auth, googleProvider)
 
     }
-    const emailPasswordSignUp = (email, password) => {
+    const emailPasswordSignUp = (name, email, password) => {
         setIsLoadding(true);
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((result) => {
-                // Signed in 
-                const user = result.user;
-                setUser(user);
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                setError(errorCode);
-            })
-            .finally(() => setIsLoadding(false));
+        return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const emailPasswordSignIn = (email, password) => {
         setIsLoadding(true);
-        signInWithEmailAndPassword(auth, email, password)
-            .then((result) => {
-                // Signed in 
-                const user = result.user;
-                setUser(user);
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                setError(errorCode)
-            })
-            .finally(() => setIsLoadding(false));
+        return signInWithEmailAndPassword(auth, email, password)
+    }
+
+    const userProfileUpdate = (name) => {
+        updateProfile(auth.currentUser, {
+            displayName: name
+        }).then(() => {
+            setUser(user);
+            console.log('profile updated!', user);
+            // ...
+        }).catch((error) => {
+            // An error occurred
+            // ...
+        });
     }
 
     const userSignOut = () => {
@@ -68,10 +62,14 @@ const useFirebase = () => {
     }
 
     useEffect(() => {
+        console.log('user change hoise!!', user);
+    }, [user])
+    useEffect(() => {
         // Get the currently signed-in user
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
+                console.log('onstatus change!');
             } else {
             }
             setIsLoadding(false);
@@ -81,11 +79,13 @@ const useFirebase = () => {
     return {
         user,
         error,
+        setError,
         isLoadding,
         googleSignIn,
         emailPasswordSignUp,
         emailPasswordSignIn,
-        userSignOut
+        userProfileUpdate,
+        userSignOut,
     }
 }
 
