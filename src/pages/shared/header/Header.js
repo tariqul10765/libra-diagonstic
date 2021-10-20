@@ -62,7 +62,7 @@ const Header = () => {
                                                     <img
                                                         style={{ borderRadius: '50%' }} width='25'
                                                         height='25'
-                                                        src='https://lh3.googleusercontent.com/a-/AOh14Gjy1icoHSMrX3Ms4s5v9DPKOtu3YPliccYnJ_ypdw=s96-c'
+                                                        src={user.photoURL}
                                                         alt="..."
                                                     />
                                                     :

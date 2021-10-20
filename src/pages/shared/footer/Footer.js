@@ -16,9 +16,9 @@ const Footer = () => {
                     </MDBCol>
                     <MDBCol md='4' className='text-center'>
                         <div className='d-flex gap-3 justify-content-center'>
-                            <MDBIcon fab icon="facebook" />
-                            <MDBIcon fab icon="twitter" />
-                            <MDBIcon fab icon="instagram" />
+                            <a href="https://www.facebook.com/"><MDBIcon fab icon="facebook" /></a>
+                            <a href="https://twitter.com/"><MDBIcon fab icon="twitter" /></a>
+                            <a href="https://www.instagram.com/"><MDBIcon fab icon="instagram" /></a>
                         </div>
                     </MDBCol>
                 </MDBRow>

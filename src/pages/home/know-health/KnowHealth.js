@@ -40,7 +40,7 @@ const KnowHealth = () => {
     return (
         <div className='my-5'>
             <MDBContainer>
-                <h1 className='text-start my-3'>KNOW YOUR HEALTH</h1>
+                <h2 className='text-start my-3 text-success'>KNOW YOUR HEALTH</h2>
                 <MDBRow>
                     {
                         healths.map(health => {
